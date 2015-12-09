@@ -1,0 +1,44 @@
+{% extends 'base.jinja' %}
+
+{% block main %}
+  <form method="post">
+    <div class="form-group row">
+      <label for="product" class="col-sm-2 form-control-label">Product:</label>
+      <div class="col-sm-8">
+        <select class="form-control" id="product" name="product">
+          <option value="">-----</option>
+          {% for product in products %}
+            <option value="{{ loop.index }}">{{ product.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-sm-2 form-control-label">
+        Price:
+        <span id="product-price">
+          TODO
+        </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="buyer" class="col-sm-2 form-control-label">Buyer:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="buyer" name="buyer" placeholder="Buyer" value="{{ buyer }}" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="paid" class="col-sm-2 form-control-label">Amount Paid:</label>
+      <div class="col-sm-10">
+        <!-- could we use a better input type here? -->
+        <input type="text" class="form-control" id="paid" name="paid" placeholder="Amount Paid" value="{{ paid }}" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Place Order</button>
+      </div>
+    </div>
+  </form>
+  <script>
+    var products = {{ products|tojson|safe }};
+  </script>
+{% endblock %}
