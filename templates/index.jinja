@@ -8,7 +8,7 @@
         <select class="form-control" id="product" name="product">
           <option value="">-----</option>
           {% for product in products %}
-            <option value="{{ loop.index }}">{{ product.name }}</option>
+            <option value="{{ loop.index - 1 }}">{{ product.name }}</option>
           {% endfor %}
         </select>
       </div>

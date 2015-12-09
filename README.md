@@ -1,16 +1,17 @@
 # TutorCruncher intern test
 
-[![Build Status](https://travis-ci.org/tutorcruncher/intern-test.svg)](https://travis-ci.org/tutorcruncher/intern-test)
+[![Build Status](https://travis-ci.org/tutorcruncher/intern-test.svg?branch=master)](https://travis-ci.org/tutorcruncher/intern-test)
 
 To complete this test you need to:
 * Fork this repo
 * clone your fork so you have a local copy of the code
-* get the app up and running locally, hint: you need to install the requirements in `requirements.txt`. The code should
-  run with either python 2.7 or 3.4.
+* get the app up and running locally (hint: you need to install the requirements in `requirements.txt`, the code should
+  run with either python 2.7 or 3.4)
 * complete the app so:
   * the order form is complete including a preview of how much the product costs.
   * it validates the order form, then either: returns an error, or redirects to the confirmation page
   * it makes the necessary calculations to complete the confirmation page
+  * if you complete the rest of the test quickly, you might want to add another page to list orders by date created
 * create a pull request to the main repo with your changes.
 
 Most of the actually coding here is pretty simple, the only mildly tricking thing is calculating the optimal 
