@@ -1,7 +1,5 @@
 # TutorCruncher intern test
 
-[![Build Status](https://travis-ci.org/tutorcruncher/intern-test.svg?branch=master)](https://travis-ci.org/tutorcruncher/intern-test)
-
 To complete this test you need to:
 * Fork this repo
 * clone your fork so you have a local copy of the code
