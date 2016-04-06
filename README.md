@@ -10,7 +10,8 @@ To complete this test you need to:
   * it validates the order form, then either: returns an error, or redirects to the confirmation page
   * it makes the necessary calculations to complete the confirmation page
   * if you complete the rest of the test quickly, you might want to add another page to list orders by date created
-* create a pull request to the main repo with your changes.
+* create an appropriately pull request to the main repo with your changes.
+* please try and make the project PEP8 complaint, we have a much better time reviewing it.
 
 Most of the actually coding here is pretty simple, the only mildly tricking thing is calculating the optimal 
 denominations of money to give change in.
