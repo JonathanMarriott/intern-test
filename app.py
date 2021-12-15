@@ -38,7 +38,7 @@ def index():
 @app.route('/confirmation/<order_id>/')
 def confirmation(order_id):
     with open(ORDER_DB) as f:
-        orders = yaml.load(f) or {}
+        orders = yaml.safe_load(f) or {}
 
     order = orders.get(order_id)
     if order is None:
