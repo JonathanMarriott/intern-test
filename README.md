@@ -1,26 +1,38 @@
-# TutorCruncher intern test
+# TutorCruncher Flask Intern Test
 
-To complete this test you need to:
-* Fork this repo
-* clone your fork so you have a local copy of the code
-* get the app up and running locally (hint: you need to install the requirements in `requirements.txt`, the code should
-  run with either python 2.7 or 3.4)
-* complete the app so:
-  * the order form is complete including a preview of how much the product costs.
-  * it validates the order form, then either: returns an error, or redirects to the confirmation page
-  * it makes the necessary calculations to complete the confirmation page
-  * if you complete the rest of the test quickly, you might want to add another page to list orders by date created
-* create an appropriately pull request to the main repo with your changes.
-* please try and make the project PEP8 complaint, we have a much better time reviewing it.
+In this repo is an unfinished Flask web app of a simple till system for buying fruit. Underneath are a few 
+tasks that you need to complete to get the till up and running.
 
-Most of the actually coding here is pretty simple, the only mildly tricking thing is calculating the optimal 
-denominations of money to give change in.
+## Objectives
 
-If you're familiar with the technologies used here this should take you well under an hour. However if you haven't 
-worked much with html, javascript, flask or python before it might take you longer. How long you choose to spend is up
-to you, but this is similar to the stack we use at TutorCruncher so if you want to come for an internship with us
-this is the kind of thing you'll need to understand or learn quickly.
+### Primary
 
-Even if you don't end up coming and doing an internship with us you'll probably learn a lot by completing the test.
+- Show a preview of how much the product will cost
+- Validate the values returned from the form, then either: 
+  - Return an error message
+  - Redirect to the confirmation page
+- On the confirmation page, generate and display the change from the amount paid 
+  with denominations (example: £17.40 = 1 x £10, 1 X £5, 2 x £1, 2 X £0.20)
 
-**Good luck.**
+### Secondary (if you have time)
+
+- Build a view to list all orders that have been recorded and sort them by date created
+
+## Rules
+
+- You can use online resources
+- You have 1 hour 30 minutes
+
+## Set up
+
+- Create your own fork for this repo
+- Clone your fork so you have a local copy
+- Get the app running locally:
+  - Install requirements in `requirements.txt`, remember to check which version of packages we are using if you are 
+    looking for online resources
+  - Get flask running by using `python app.py`
+
+## Submitting Code
+
+- Create an appropriate pull request to the main repo with your changes
+- Please try and make the project PEP8 complaint
