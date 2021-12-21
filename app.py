@@ -1,3 +1,4 @@
+from itertools import product
 import uuid
 import yaml
 
@@ -31,7 +32,16 @@ def index():
     context = {}
     if request.method == 'POST':
         # TODO: Validate and process the data entered in the form
-        flash('Order Placed Successfully', 'success')
+        print('Form Submitted with data:', request.form)
+        form_dict = request.form
+        #Check amount paid is greater than price
+        product = int(form_dict['product'])
+        if PRODUCTS[product]['price'] > float(form_dict['paid']):
+            print("Buyer did not pay enough")
+            flash('Order not placed - insufficient payment', 'error')
+        else:
+            record_order(product)
+            flash('Order Placed Successfully', 'success')
     return render_template('index.jinja', products=PRODUCTS, title='Order Form', **context)
 
 
