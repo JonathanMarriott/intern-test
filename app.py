@@ -25,7 +25,7 @@ def record_order(product_id):
     }
     with open(ORDER_DB, 'a') as f:
         f.write(yaml.dump(orders, default_flow_style=False))
-
+    return order_id
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -40,9 +40,10 @@ def index():
             print("Buyer did not pay enough")
             flash('Order not placed - insufficient payment', 'danger')
         else:
-            record_order(product)
+            order_id = record_order(product)
             flash('Order Placed Successfully', 'success')
-    return render_template('index.jinja', products=PRODUCTS, title='Order Form', **context)
+            return render_template('confirmation.jinja', **context)
+    return render_template('index.jinja/'+order_id+'/', products=PRODUCTS, title='Order Form', **context)
 
 
 @app.route('/confirmation/<order_id>/')
