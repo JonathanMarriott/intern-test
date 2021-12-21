@@ -16,12 +16,13 @@ with open('denominations.yml') as _f:
     DENOMINATIONS = yaml.safe_load(_f)
 
 
-def record_order(product_id):
+def record_order(product_id, amount_paid):
     """Adds the order details to the ORDER_DB file"""
     order_id = str(uuid.uuid4()).split('-', 1)[0]
     orders = {
         order_id: {
             'product_id': product_id,
+            'amount_paid': amount_paid,
         }
     }
     with open(ORDER_DB, 'a') as f:
@@ -37,11 +38,12 @@ def index():
         form_dict = request.form
         #Check amount paid is greater than price
         product = int(form_dict['product'])
-        if PRODUCTS[product]['price'] > float(form_dict['paid']):
+        amount_paid = float(form_dict['paid'])
+        if PRODUCTS[product]['price'] > amount_paid:
             print("Buyer did not pay enough")
             flash('Order not placed - insufficient payment', 'danger')
         else:
-            current_order_id = record_order(product)
+            current_order_id = record_order(product, amount_paid)
             flash('Order Placed Successfully', 'success')
             return redirect(url_for('confirmation',order_id = current_order_id))
     return render_template('index.jinja', products=PRODUCTS, title='Order Form', **context)
@@ -55,9 +57,9 @@ def confirmation(order_id):
     order = orders.get(order_id)
     if order is None:
         # TODO: What should we do here?
-        pass
-
+        flash('No order id found - pelase try again', 'danger')
     # TODO: Get the context for the confirmation page
+
     return render_template('confirmation.jinja', order_id=order_id, title='Order Confirmation')
 
 
