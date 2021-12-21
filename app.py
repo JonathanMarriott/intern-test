@@ -42,8 +42,8 @@ def index():
         else:
             order_id = record_order(product)
             flash('Order Placed Successfully', 'success')
-            return render_template('confirmation.jinja', **context)
-    return render_template('index.jinja/'+order_id+'/', products=PRODUCTS, title='Order Form', **context)
+            return render_template('confirmation.jinja/'+order_id+'/', **context)
+    return render_template('index.jinja', products=PRODUCTS, title='Order Form', **context)
 
 
 @app.route('/confirmation/<order_id>/')
