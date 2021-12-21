@@ -59,8 +59,10 @@ def confirmation(order_id):
         # TODO: What should we do here?
         flash('No order id found - pelase try again', 'danger')
     # TODO: Get the context for the confirmation page
-
-    return render_template('confirmation.jinja', order_id=order_id, title='Order Confirmation')
+    amount_paid = order['amount_paid']
+    item_price = PRODUCTS[order['product_id']]['price']
+    change_due = round(amount_paid - item_price,2)
+    return render_template('confirmation.jinja', order_id=order_id, amount_paid=amount_paid, item_price=item_price, change_due=change_due, title='Order Confirmation')
 
 
 if __name__ == '__main__':
