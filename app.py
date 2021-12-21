@@ -1,9 +1,9 @@
+import re
 import uuid
 from flask.helpers import url_for
 import yaml
 
 from flask import Flask, flash, redirect, request, render_template
-
 app = Flask(__name__)
 app.secret_key = 'intern_test'
 ORDER_DB = 'orders.yml'
@@ -33,8 +33,10 @@ def index():
     context = {}
     if request.method == 'POST':
         # TODO: Validate and process the data entered in the form
-        print('Form Submitted with data:', request.form)
         form_dict = request.form
+        if not form_dict['product'].isnumeric() or not form_dict['paid'].isdecimal():
+            flash('Order not placed - invalid form content', 'danger')
+            return render_template('index.jinja', products=PRODUCTS, title='Order Form', **context)
         #Check amount paid is greater than price
         product = int(form_dict['product'])
         amount_paid = float(form_dict['paid'])
