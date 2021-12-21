@@ -1,5 +1,6 @@
 from itertools import product
 import uuid
+from flask.helpers import url_for
 import yaml
 
 from flask import Flask, flash, redirect, request, render_template
@@ -40,9 +41,9 @@ def index():
             print("Buyer did not pay enough")
             flash('Order not placed - insufficient payment', 'danger')
         else:
-            order_id = record_order(product)
+            current_order_id = record_order(product)
             flash('Order Placed Successfully', 'success')
-            return render_template('confirmation.jinja/'+order_id+'/', **context)
+            return redirect(url_for('confirmation',order_id = current_order_id))
     return render_template('index.jinja', products=PRODUCTS, title='Order Form', **context)
 
 
