@@ -38,7 +38,7 @@ def index():
         product = int(form_dict['product'])
         if PRODUCTS[product]['price'] > float(form_dict['paid']):
             print("Buyer did not pay enough")
-            flash('Order not placed - insufficient payment', 'error')
+            flash('Order not placed - insufficient payment', 'danger')
         else:
             record_order(product)
             flash('Order Placed Successfully', 'success')
