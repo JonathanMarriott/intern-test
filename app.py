@@ -1,4 +1,3 @@
-from itertools import product
 import uuid
 from flask.helpers import url_for
 import yaml
@@ -39,8 +38,7 @@ def index():
         #Check amount paid is greater than price
         product = int(form_dict['product'])
         amount_paid = float(form_dict['paid'])
-        if PRODUCTS[product]['price'] > amount_paid:
-            print("Buyer did not pay enough")
+        if PRODUCTS[product]['price'] >= amount_paid:
             flash('Order not placed - insufficient payment', 'danger')
         else:
             current_order_id = record_order(product, amount_paid)
@@ -56,9 +54,8 @@ def confirmation(order_id):
 
     order = orders.get(order_id)
     if order is None:
-        # TODO: What should we do here?
-        flash('No order id found - pelase try again', 'danger')
-    # TODO: Get the context for the confirmation page
+        flash('No order id found - please try again', 'danger')
+    
     amount_paid = order['amount_paid']
     item_price = PRODUCTS[order['product_id']]['price']
     change_due = round(amount_paid - item_price,2)
@@ -66,10 +63,8 @@ def confirmation(order_id):
     denom_string = ''
     for denom in DENOMINATIONS:
         num, change_pence = divmod(change_pence,denom['value'])
-        print(change_pence)
         if num > 0:
-            denom_string += denom['name'] + ': ' + str(num) + ' '
-    print(denom_string)    
+            denom_string += f'{denom["name"]}: {str(num)} '   
     return render_template('confirmation.jinja', order_id=order_id, amount_paid=amount_paid, item_price=item_price, change_due=change_due, denomination_str=denom_string, title='Order Confirmation')
 
 
